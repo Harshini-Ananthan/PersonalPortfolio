@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "nex-sync"
+  },
+  "targets": {
+    "nex-sync": {
+      "hosting": {
+        "harshini-a": [
+          "harshini-a"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

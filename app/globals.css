@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #F2EDE2;
+    --dark: #2A0808;
+    --burgundy: #5A171B;
+    --accent: #8E3B43;
+    --foreground: #1C1515;
+    --muted: #756866;
+    --border: #C8BDB0;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-manrope), sans-serif;
+  }
+}
+
+@layer utilities {
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 112.5%; /* 18px base size (16px * 1.125) */
+}
