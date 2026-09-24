@@ -172,31 +172,6 @@ const roles = ["Student", "Full Stack Developer", "MERN Stack Developer", "Cloud
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("education");
-  const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
-  const [currentText, setCurrentText] = useState("");
-  const [isDeleting, setIsDeleting] = useState(false);
-
-  useEffect(() => {
-    const currentRole = roles[currentRoleIndex];
-    const delay = isDeleting ? 50 : currentText === currentRole ? 2000 : 100;
-
-    const timer = setTimeout(() => {
-      if (!isDeleting && currentText === currentRole) {
-        setIsDeleting(true);
-      } else if (isDeleting && currentText === "") {
-        setIsDeleting(false);
-        setCurrentRoleIndex((prev) => (prev + 1) % roles.length);
-      } else {
-        setCurrentText(
-          isDeleting
-            ? currentRole.substring(0, currentText.length - 1)
-            : currentRole.substring(0, currentText.length + 1)
-        );
-      }
-    }, delay);
-
-    return () => clearTimeout(timer);
-  }, [currentText, isDeleting, currentRoleIndex]);
 
   return (
     <main className="min-h-screen bg-background text-foreground font-sans antialiased overflow-clip selection:bg-accent selection:text-background">
@@ -224,39 +199,134 @@ export default function Home() {
       </div>
 
       {/* HERO SECTION */}
-      <section id="header" className="relative min-h-[calc(100vh-88px)] flex items-center border-b border-border">
-        <div className="mx-auto w-full max-w-[90%] px-4 flex flex-col-reverse lg:flex-row gap-0 h-full">
+      <section id="header" className="relative min-h-[calc(100vh-88px)] flex flex-col justify-center">
+        <div className="mx-auto w-full max-w-[95%] xl:max-w-[90%] px-2 lg:px-4 flex flex-col lg:flex-row h-full items-stretch py-8 lg:py-0">
+          
           {/* Left Typography Area */}
-          <div className="lg:w-[60%] flex flex-col justify-center py-12 lg:pr-20">
-            <p className="text-xs uppercase tracking-[0.3em] font-bold text-accent mb-6">
-              Software Developer Portfolio
-            </p>
-            <h1 className="text-6xl md:text-[6rem] lg:text-[7rem] font-dancing font-bold leading-[1.1] text-dark break-words">
+          <div className="lg:w-[45%] flex flex-col justify-center py-12 lg:pr-10 xl:pr-16">
+            <div className="mb-6 flex items-center gap-4">
+               <div className="w-12 h-[1px] bg-dark/40"></div>
+               <p className="text-[10px] md:text-xs uppercase tracking-[0.2em] font-bold text-muted">
+                 Software Developer Portfolio
+               </p>
+            </div>
+            <h1 className="text-6xl md:text-[5.5rem] lg:text-[6.5rem] font-dancing font-bold leading-[1.1] text-dark break-words mb-8">
               Harshini<br />Ananthan
             </h1>
-            <div className="mt-8 flex items-center text-lg md:text-2xl font-medium text-muted h-[1.2em]">
-              <span>{currentText}</span>
-              <span className="w-1.5 h-[0.9em] bg-accent ml-2 animate-pulse"></span>
-            </div>
-            <div className="mt-10 flex flex-wrap gap-6">
-              <a href="#project" className="border border-dark bg-dark text-background px-10 py-4 text-xs font-bold uppercase tracking-widest hover:bg-burgundy hover:border-burgundy transition-colors duration-300">
-                View Projects
+            <p className="text-lg md:text-xl text-muted font-medium mb-12 max-w-md leading-relaxed">
+              Building thoughtful digital experiences with code, cloud and AI.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <a href="#project" className="bg-dark text-[#F2EDE2] px-8 py-4 text-xs font-bold uppercase tracking-widest hover:bg-burgundy transition-colors duration-300 flex items-center gap-2">
+                View Projects <span>&rarr;</span>
               </a>
-              <a href="/images/24CS084 Harshini A.pdf" download className="border border-border bg-transparent text-foreground px-10 py-4 text-xs font-bold uppercase tracking-widest hover:border-dark hover:text-dark transition-colors duration-300">
-                Download CV
+              <a href="/images/24CS084 Harshini A.pdf" download className="border border-dark text-dark px-8 py-4 text-xs font-bold uppercase tracking-widest hover:bg-dark hover:text-[#F2EDE2] transition-colors duration-300 flex items-center gap-2">
+                Download CV <span>&#8681;</span>
               </a>
             </div>
           </div>
+
+          {/* Middle Info Area */}
+          <div className="lg:w-[30%] flex flex-col justify-center py-12 px-6 lg:px-10 border-y lg:border-y-0 lg:border-l lg:border-r border-border/60">
+            <div className="flex flex-col gap-10">
+              {/* Item 1 */}
+              <div className="flex gap-5 items-start">
+                <div className="w-10 h-10 rounded-full border border-dark/20 flex items-center justify-center shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-muted" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                </div>
+                <div>
+                  <h3 className="text-xs font-bold text-dark uppercase tracking-[0.15em] mb-1.5">Software Developer</h3>
+                  <p className="text-sm text-muted">Full Stack | Web | AI</p>
+                </div>
+              </div>
+              
+              {/* Item 2 */}
+              <div className="flex gap-5 items-start border-t border-border/40 pt-10">
+                <div className="w-10 h-10 rounded-full border border-dark/20 flex items-center justify-center shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-muted" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+                </div>
+                <div>
+                  <h3 className="text-xs font-bold text-dark uppercase tracking-[0.15em] mb-1.5">B.E. CSE (Pursuing)</h3>
+                  <p className="text-sm text-muted leading-relaxed">Sri Eshwar College of Engineering, Coimbatore</p>
+                </div>
+              </div>
+
+              {/* Item 3 */}
+              <div className="flex gap-5 items-start border-t border-border/40 pt-10">
+                <div className="w-10 h-10 rounded-full border border-dark/20 flex items-center justify-center shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-muted" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                </div>
+                <div>
+                  <h3 className="text-xs font-bold text-dark uppercase tracking-[0.15em] mb-1.5">Coimbatore, India</h3>
+                  <p className="text-sm text-muted leading-relaxed">Open to remote & on-site opportunities</p>
+                </div>
+              </div>
+
+              {/* Item 4 */}
+              <div className="flex gap-5 items-start border-t border-border/40 pt-10">
+                <div className="w-10 h-10 rounded-full border border-dark/20 flex items-center justify-center shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-muted" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+                </div>
+                <div>
+                  <h3 className="text-xs font-bold text-dark uppercase tracking-[0.15em] mb-1.5">Let's Connect</h3>
+                  <a href="mailto:harshini.ananthan@example.com" className="text-sm text-muted hover:text-dark transition-colors">harshini.ananthan@example.com</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Right Visual Block */}
-          <div className="lg:w-[40%] bg-dark min-h-[40vh] lg:min-h-full relative overflow-hidden flex items-center justify-center p-10">
-             <div className="absolute inset-0 opacity-20 bg-[url('/images/photo.jpeg')] bg-cover bg-center mix-blend-overlay"></div>
-             <div className="relative z-10 text-center border border-border/20 p-12 backdrop-blur-sm">
-                <p className="text-xs uppercase tracking-widest text-[#F2EDE2]/70">Selected Works</p>
-                <h2 className="text-4xl text-[#F2EDE2] font-extrabold mt-2 tracking-tighter">2026</h2>
+          <div className="lg:w-[25%] flex items-center justify-center p-8 lg:p-12 relative min-h-[350px]">
+             {/* Decorative Corner Accents */}
+             <div className="absolute top-6 left-6 w-12 h-12 border-t border-l border-dark/30 hidden lg:block"></div>
+             <div className="absolute bottom-6 right-6 w-12 h-12 border-b border-r border-dark/30 hidden lg:block"></div>
+             
+             {/* Main Box */}
+             <div className="w-full h-full max-h-[400px] bg-dark relative flex flex-col items-center justify-center p-8 z-10 shadow-lg">
+                <div className="absolute inset-4 border border-[#F2EDE2]/20"></div>
+                <div className="text-center relative z-20">
+                   <p className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-[#F2EDE2]/70 font-bold mb-6">Selected Works</p>
+                   <div className="w-6 h-[1px] bg-[#F2EDE2]/40 mx-auto mb-6"></div>
+                   <h2 className="text-5xl md:text-6xl text-[#F2EDE2] font-sans font-normal tracking-normal">2026</h2>
+                </div>
              </div>
           </div>
+
         </div>
       </section>
+
+      {/* STATS SECTION */}
+      <div className="border-b border-border bg-background">
+        <div className="mx-auto w-full max-w-[95%] xl:max-w-[90%] px-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-border border-x border-border">
+            
+            <div className="py-10 text-center flex flex-col items-center justify-center">
+              <h3 className="text-3xl font-extrabold text-dark mb-3">08+</h3>
+              <p className="text-[10px] font-bold uppercase tracking-widest text-muted">Projects Completed</p>
+            </div>
+            
+            <div className="py-10 text-center flex flex-col items-center justify-center">
+              <h3 className="text-3xl font-extrabold text-dark mb-3">12+</h3>
+              <p className="text-[10px] font-bold uppercase tracking-widest text-muted">Tech Stacks</p>
+            </div>
+            
+            <div className="py-10 text-center flex flex-col items-center justify-center">
+              <h3 className="text-3xl font-extrabold text-dark mb-3">2026</h3>
+              <p className="text-[10px] font-bold uppercase tracking-widest text-muted">Graduation Year</p>
+            </div>
+            
+            <div className="py-10 text-center flex flex-col items-center justify-center">
+              <h3 className="text-3xl font-extrabold text-dark mb-3">1</h3>
+              <div className="flex items-center gap-3">
+                <span className="w-8 h-[1px] bg-border/60 hidden lg:block"></span>
+                <p className="text-[10px] font-bold uppercase tracking-widest text-muted">Goal : Impact through tech</p>
+                <span className="w-8 h-[1px] bg-border/60 hidden lg:block"></span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
 
       {/* ABOUT SECTION */}
       <section id="about" className="py-16 border-b border-border min-h-[calc(100vh-88px)] flex items-center">
